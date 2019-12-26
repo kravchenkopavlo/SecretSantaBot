@@ -1,6 +1,8 @@
 package com.kravchenkopavlo.examplesBot.bot;
 
-import com.kravchenkopavlo.examplesBot.bot.actions.SayHello;
+import com.kravchenkopavlo.examplesBot.bot.actions.RegisterMember;
+import com.kravchenkopavlo.examplesBot.bot.actions.SendSecretSanta;
+import com.kravchenkopavlo.examplesBot.bot.actions.Start;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -18,18 +20,23 @@ public class Bot extends TelegramLongPollingBot {
 
         this.respondService = new RespondService(this);
         this.updateParser = new UpdateParser()
-                .addAction(new SayHello(respondService));
+                .addAction(new Start(respondService))
+                .addAction(new RegisterMember(respondService))
+                .addAction(new SendSecretSanta(respondService, this));
     }
 
+    @Override
     public void onUpdateReceived(Update update) {
         updateParser.proceed(update);
         respondService.sendAll();
     }
 
+    @Override
     public String getBotUsername() {
         return this.username;
     }
 
+    @Override
     public String getBotToken() {
         return this.token;
     }

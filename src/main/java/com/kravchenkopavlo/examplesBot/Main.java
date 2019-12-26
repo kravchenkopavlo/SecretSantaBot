@@ -5,7 +5,7 @@ import com.kravchenkopavlo.examplesBot.bot.BotService;
 public class Main {
     public static void main(String[] args) {
         new BotService().start(
-                "BarbequeMakerBot",
-                "885202064:AAHsTnSiwqjlVuhsfZ9SVALNC78qlv4kBo8");
+                "simpleSecretSantaBot",
+                "758387571:AAFiUzzkVaFi8EvW8hKm7_gY14SJtATs5K4");
     }
 }
