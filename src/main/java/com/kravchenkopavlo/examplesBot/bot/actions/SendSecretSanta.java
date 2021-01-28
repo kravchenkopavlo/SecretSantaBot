@@ -37,7 +37,7 @@ public class SendSecretSanta extends AbstractAction {
             }
         }
 
-//        if (!areReady(persons)) return false;
+        if (!areReady(persons)) return false;
 
         final List<String> notPicked = new ArrayList<>(persons);
         persons.forEach(person -> {
@@ -47,7 +47,8 @@ public class SendSecretSanta extends AbstractAction {
                 int pick;
                 while (true) {
                     final int index = (int) Math.round(Math.random() * (notPicked.size() - 1));
-                    if (!notPicked.get(index).contains("("+userId+")")) {
+                    final String picked = notPicked.get(index);
+                    if (!picked.contains("("+userId+")")) {
                         pick = index;
                         break;
                     }
